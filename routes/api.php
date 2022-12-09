@@ -33,4 +33,8 @@ $api->version('v1', function ($api) {
         $api->post('/token/refresh', 'App\Http\Controllers\Auth\AuthController@refresh');
         $api->post('/logout', 'App\Http\Controllers\Auth\AuthController@logout');
     });
+
+    $api->group(['middleware' => ['role:super-admin'], 'prefix'=>'admin'], function($api) {
+        $api->get('users', 'App\Http\Controllers\Admin\AdminUserController@index');
+    });
 });
