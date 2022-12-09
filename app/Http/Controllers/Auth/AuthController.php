@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -49,6 +50,23 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        $moi = User::where('id', auth()->user()->id)->with('roles')->first();
+        return response()->json($moi);
+    }
+
+    // public function moi()
+    // {
+    //     $moi = User::where('id', auth()->user()->id)->with('roles')->first();
+    //     return response()->json($moi);
+    // }
 
     public function refresh()
     {
