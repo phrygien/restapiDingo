@@ -1,0 +1,2 @@
+https://github.com/dingo/api/wiki/Configuration
+https://jwt-auth.readthedocs.io/en/develop/laravel-installation/
