@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "spatie/laravel-permission": "^5.7",
+        "spatie/laravel-query-builder": "^5.1",
         "tymon/jwt-auth": "1.0.*"
     },
     "require-dev": {

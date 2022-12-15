@@ -38,4 +38,12 @@ $api->version('v1', function ($api) {
     $api->group(['middleware' => ['role:super-admin'], 'prefix'=>'admin'], function($api) {
         $api->get('users', 'App\Http\Controllers\Admin\AdminUserController@index');
     });
+
+    $api->group(['middleware' => ['role:super-admin'], 'prefix'=>'gestion'], function($api) {
+        $api->get('employees', 'App\Http\Controllers\Gestion\EmployeeController@index');
+        $api->post('employees/create', 'App\Http\Controllers\Gestion\EmployeeController@store');
+        $api->get('employees/show/{id}', 'App\Http\Controllers\Gestion\EmployeeController@show');
+        $api->post('employees/update/{id}', 'App\Http\Controllers\Gestion\EmployeeController@update');
+        $api->delete('employees/delete/{id}', 'App\Http\Controllers\Gestion\EmployeeController@destroy');
+    });
 });
