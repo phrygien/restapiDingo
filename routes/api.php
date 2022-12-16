@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    
+
     $api->get('/', function(){
         return 'Hello DingoApi';
     });
@@ -45,5 +45,11 @@ $api->version('v1', function ($api) {
         $api->get('employees/show/{id}', 'App\Http\Controllers\Gestion\EmployeeController@show');
         $api->post('employees/update/{id}', 'App\Http\Controllers\Gestion\EmployeeController@update');
         $api->delete('employees/delete/{id}', 'App\Http\Controllers\Gestion\EmployeeController@destroy');
+
+        // product module
+        $api->resource('products', App\Http\Controllers\Gestion\ProductController::class);
+        //$api->get('products/view/all', [ProductController::class, 'indexAll']);
+        //$api->get('products/view/search', [ProductController::class, 'search']);
     });
+
 });

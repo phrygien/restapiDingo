@@ -70,4 +70,9 @@ class User extends Authenticatable implements JWTSubject
             $this->attributes['password'] = bcrypt($password);
         }
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

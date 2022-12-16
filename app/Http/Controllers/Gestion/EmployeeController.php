@@ -15,11 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::paginate(2);
-        return response()->json([
-            'messages' => 'Liste employees',
-            'data' => $employees
-        ]);
+        $employees = Employee::all();
+        return response()->json($employees);
     }
 
     /**
