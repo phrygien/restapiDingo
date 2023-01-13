@@ -48,8 +48,8 @@ $api->version('v1', function ($api) {
 
         // product module
         $api->resource('products', App\Http\Controllers\Gestion\ProductController::class);
-        //$api->get('products/view/all', [ProductController::class, 'indexAll']);
-        //$api->get('products/view/search', [ProductController::class, 'search']);
+        $api->get('products/view/all', [ProductController::class, 'indexAll']);
+        $api->get('products/view/search', [ProductController::class, 'search']);
     });
 
 });
