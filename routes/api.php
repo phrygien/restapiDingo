@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TutorialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,13 +44,20 @@ $api->version('v1', function ($api) {
         $api->get('employees', 'App\Http\Controllers\Gestion\EmployeeController@index');
         $api->post('employees/create', 'App\Http\Controllers\Gestion\EmployeeController@store');
         $api->get('employees/show/{id}', 'App\Http\Controllers\Gestion\EmployeeController@show');
-        $api->post('employees/update/{id}', 'App\Http\Controllers\Gestion\EmployeeController@update');
+        $api->put('employees/update/{id}', 'App\Http\Controllers\Gestion\EmployeeController@update');
         $api->delete('employees/delete/{id}', 'App\Http\Controllers\Gestion\EmployeeController@destroy');
-
+        $api->get('activities', 'App\Http\Controllers\Gestion\EmployeeController@activityLog');
         // product module
         $api->resource('products', App\Http\Controllers\Gestion\ProductController::class);
         $api->get('products/view/all', [ProductController::class, 'indexAll']);
         $api->get('products/view/search', [ProductController::class, 'search']);
     });
 
+    $api->get('tutorials', [TutorialController::class, 'index']);
+    $api->get('tutorials/chercher', [TutorialController::class, 'chercher']);
+    $api->post('tutorials/create', [TutorialController::class, 'store']);
+    $api->get('tutorials/show/{id}', [TutorialController::class, 'show']);
+    $api->put('tutorials/update/{id}', [TutorialController::class, 'update']);
+    $api->delete('tutorials/delete/{id}', [TutorialController::class, 'destroy']);
+    $api->delete('tutorials/deleteAll', [TutorialController::class, 'deleteAll']);
 });

@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Gestion;
 
-use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class EmployeeController extends Controller
 {
+    public function activityLog()
+    {
+        $activities = Activity::all();
+        return response()->json($activities);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +36,7 @@ class EmployeeController extends Controller
     {
         $employees = new Employee([
             'name' => $request->input('name'),
-            'adress' => $request->input('address'),
+            'adress' => $request->input('adress'),
             'mobile' => $request->input('mobile'),
         ]);
         
